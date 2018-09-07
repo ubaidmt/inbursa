@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UploadImage" targetNamespace="http://ws.filenet.sii.inbursa.com.mx/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.filenet.sii.inbursa.com.mx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.filenet.sii.inbursa.com.mx/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="deleteDocument" type="tns:deleteDocument"/>
+      <xs:element name="deleteDocumentResponse" type="tns:deleteDocumentResponse"/>
+      <xs:element name="uploadDocument" type="tns:uploadDocument"/>
+      <xs:element name="uploadDocumentResponse" type="tns:uploadDocumentResponse"/>
+      <xs:complexType name="deleteDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idDocumento" type="xs:string"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="datosOrigenVo">
+        <xs:sequence>
+          <xs:element name="sistemaOrigen" type="xs:int"/>
+          <xs:element minOccurs="0" name="usuario" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteDocumentResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:documentoEliminadoVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="documentoEliminadoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+          <xs:element name="error" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="uploadDocument">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="documento" type="tns:documentoVO"/>
+          <xs:element minOccurs="0" name="negocio" type="xs:string"/>
+          <xs:element minOccurs="0" name="producto" type="xs:string"/>
+          <xs:element minOccurs="0" name="tramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="documentoVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="base64Documento" type="xs:string"/>
+          <xs:element minOccurs="0" name="extension" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="llavesDocumento" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreDocumento" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDocumento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="uploadDocumentResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:responseDocumentVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseDocumentVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+          <xs:element name="error" type="xs:int"/>
+          <xs:element minOccurs="0" name="nombreImagen" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDocumento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="deleteDocumentResponse">
+    <wsdl:part element="tns:deleteDocumentResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="uploadDocument">
+    <wsdl:part element="tns:uploadDocument" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="deleteDocument">
+    <wsdl:part element="tns:deleteDocument" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="uploadDocumentResponse">
+    <wsdl:part element="tns:uploadDocumentResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="UploadImage">
+    <wsdl:operation name="deleteDocument">
+      <wsdl:input message="tns:deleteDocument" name="deleteDocument"/>
+      <wsdl:output message="tns:deleteDocumentResponse" name="deleteDocumentResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="uploadDocument">
+      <wsdl:input message="tns:uploadDocument" name="uploadDocument"/>
+      <wsdl:output message="tns:uploadDocumentResponse" name="uploadDocumentResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UploadImageSoapBinding" type="tns:UploadImage">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deleteDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="uploadDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="uploadDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UploadImage">
+    <wsdl:port binding="tns:UploadImageSoapBinding" name="UpLoadImageImplPort">
+      <soap:address location="http://146.219.188.102:9988/inbursa-sii/ws/uploadImg"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ExpedienteUnico" targetNamespace="http://ws.unico.expediente.filenet.inbursa.com.mx/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.unico.expediente.filenet.inbursa.com.mx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.unico.expediente.filenet.inbursa.com.mx/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="eliminarDocumentosPorId" type="tns:eliminarDocumentosPorId"/>
+      <xs:element name="eliminarDocumentosPorIdResponse" type="tns:eliminarDocumentosPorIdResponse"/>
+      <xs:element name="getDocumentosFolder" type="tns:getDocumentosFolder"/>
+      <xs:element name="getDocumentosFolderResponse" type="tns:getDocumentosFolderResponse"/>
+      <xs:element name="getExpedientePorIdPersona" type="tns:getExpedientePorIdPersona"/>
+      <xs:element name="getExpedientePorIdPersonaResponse" type="tns:getExpedientePorIdPersonaResponse"/>
+      <xs:element name="getTiposDocumentosByTramite" type="tns:getTiposDocumentosByTramite"/>
+      <xs:element name="getTiposDocumentosByTramiteResponse" type="tns:getTiposDocumentosByTramiteResponse"/>
+      <xs:element name="replicarExpediente" type="tns:replicarExpediente"/>
+      <xs:element name="replicarExpedienteResponse" type="tns:replicarExpedienteResponse"/>
+      <xs:complexType name="replicarExpediente">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="replicarExpedienteVo" type="tns:replicarExpedienteRequestVo"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="replicarExpedienteRequestVo">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="documentosAreplicar" nillable="true" type="tns:documentoAreplicarVo"/>
+          <xs:element minOccurs="0" name="folioTysDestino" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="llavesNegocio" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="tramiteDestino" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="documentoAreplicarVo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idsDocumentoOrigen" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreDocumentoDestino" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDocumentoDestino" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="datosOrigenVo">
+        <xs:sequence>
+          <xs:element name="sistemaOrigen" type="xs:int"/>
+          <xs:element minOccurs="0" name="usuario" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="replicarExpedienteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:responseReplicaExpedienteVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseReplicaExpedienteVo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcionError" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="documentosReplicados" nillable="true" type="tns:documentoReplicadoVo"/>
+          <xs:element name="error" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="documentoReplicadoVo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descError" type="xs:string"/>
+          <xs:element name="error" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="idDocumentoOrigen" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eliminarDocumentosPorId">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="idsDocumento" type="xs:string"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="eliminarDocumentosPorIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:responseDocumentoEliminadoVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseDocumentoEliminadoVo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcionError" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="documentosEliminados" nillable="true" type="tns:documentoEliminadoVo"/>
+          <xs:element name="error" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="documentoEliminadoVo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descError" type="xs:string"/>
+          <xs:element name="error" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="idDocumento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTiposDocumentosByTramite">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="claveTramite" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getTiposDocumentosByTramiteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:responseTiposDocumentosByTramiteVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseTiposDocumentosByTramiteVO">
+        <xs:sequence>
+          <xs:element name="error" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="errorDescripcion" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="listaTiposDocumentos" nillable="true" type="tns:tiposDocumentosVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tiposDocumentosVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="claseDocumental" type="xs:string"/>
+          <xs:element minOccurs="0" name="claveTipoDocumento" type="xs:string"/>
+          <xs:element minOccurs="0" name="descripcionTipoDocumento" type="xs:string"/>
+          <xs:element minOccurs="0" name="idTipoDocumento" type="xs:long"/>
+          <xs:element minOccurs="0" name="idTramite" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getExpedientePorIdPersona">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="idspersona" type="xs:string"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getExpedientePorIdPersonaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:responseExpedienteUnico"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseExpedienteUnico">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcionError" type="xs:string"/>
+          <xs:element name="error" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="jsonExpedienteUnico" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDocumentosFolder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idFolder" type="xs:string"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDocumentosFolderResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:responseDocumentosFolder"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseDocumentosFolder">
+        <xs:sequence>
+          <xs:element name="error" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="errorDescripcion" type="xs:string"/>
+          <xs:element minOccurs="0" name="jsonDocumentosFolder" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getDocumentosFolder">
+    <wsdl:part element="tns:getDocumentosFolder" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getExpedientePorIdPersonaResponse">
+    <wsdl:part element="tns:getExpedientePorIdPersonaResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getTiposDocumentosByTramite">
+    <wsdl:part element="tns:getTiposDocumentosByTramite" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getTiposDocumentosByTramiteResponse">
+    <wsdl:part element="tns:getTiposDocumentosByTramiteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="eliminarDocumentosPorIdResponse">
+    <wsdl:part element="tns:eliminarDocumentosPorIdResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getDocumentosFolderResponse">
+    <wsdl:part element="tns:getDocumentosFolderResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="replicarExpediente">
+    <wsdl:part element="tns:replicarExpediente" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getExpedientePorIdPersona">
+    <wsdl:part element="tns:getExpedientePorIdPersona" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="eliminarDocumentosPorId">
+    <wsdl:part element="tns:eliminarDocumentosPorId" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="replicarExpedienteResponse">
+    <wsdl:part element="tns:replicarExpedienteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ExpedienteUnico">
+    <wsdl:operation name="replicarExpediente">
+      <wsdl:input message="tns:replicarExpediente" name="replicarExpediente"/>
+      <wsdl:output message="tns:replicarExpedienteResponse" name="replicarExpedienteResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarDocumentosPorId">
+      <wsdl:input message="tns:eliminarDocumentosPorId" name="eliminarDocumentosPorId"/>
+      <wsdl:output message="tns:eliminarDocumentosPorIdResponse" name="eliminarDocumentosPorIdResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getTiposDocumentosByTramite">
+      <wsdl:input message="tns:getTiposDocumentosByTramite" name="getTiposDocumentosByTramite"/>
+      <wsdl:output message="tns:getTiposDocumentosByTramiteResponse" name="getTiposDocumentosByTramiteResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getExpedientePorIdPersona">
+      <wsdl:input message="tns:getExpedientePorIdPersona" name="getExpedientePorIdPersona"/>
+      <wsdl:output message="tns:getExpedientePorIdPersonaResponse" name="getExpedientePorIdPersonaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentosFolder">
+      <wsdl:input message="tns:getDocumentosFolder" name="getDocumentosFolder"/>
+      <wsdl:output message="tns:getDocumentosFolderResponse" name="getDocumentosFolderResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExpedienteUnicoSoapBinding" type="tns:ExpedienteUnico">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="replicarExpediente">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="replicarExpediente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="replicarExpedienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarDocumentosPorId">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="eliminarDocumentosPorId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="eliminarDocumentosPorIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTiposDocumentosByTramite">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTiposDocumentosByTramite">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTiposDocumentosByTramiteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExpedientePorIdPersona">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getExpedientePorIdPersona">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getExpedientePorIdPersonaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentosFolder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getDocumentosFolder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDocumentosFolderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExpedienteUnico">
+    <wsdl:port binding="tns:ExpedienteUnicoSoapBinding" name="ExpedienteUnicoImplPort">
+      <soap:address location="http://172.20.144.208:7005/inbursa-sii/ws/expedienteUnico/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

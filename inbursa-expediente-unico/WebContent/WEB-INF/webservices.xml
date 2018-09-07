@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webservices xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/javaee_web_services_1_4.xsd" version="1.4">
+	<webservice-description>
+		<webservice-description-name>ExpedienteUnico</webservice-description-name>
+		<port-component>
+			<port-component-name>ExpedienteUnico</port-component-name>
+			<wsdl-service xmlns:pfx="http://ws.unico.expediente.filenet.inbursa.com.mx/">
+			pfx:ExpedienteUnico</wsdl-service>
+			<wsdl-port xmlns:pfx="http://ws.unico.expediente.filenet.inbursa.com.mx/">
+			pfx:ExpedienteUnicoImplPort</wsdl-port>
+			<enable-mtom>false</enable-mtom>
+			<service-endpoint-interface>mx.com.inbursa.filenet.expediente.unico.ws.ExpedienteUnico</service-endpoint-interface>
+			<service-impl-bean>
+				<servlet-link>
+				mx.com.inbursa.filenet.expediente.unico.ws.ExpedienteUnicoSoapBindingImpl</servlet-link>
+			</service-impl-bean>
+		</port-component>
+	</webservice-description>
+</webservices>

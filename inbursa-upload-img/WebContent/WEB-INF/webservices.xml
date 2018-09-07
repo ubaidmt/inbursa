@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webservices xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/javaee_web_services_1_4.xsd" version="1.4">
+	<webservice-description>
+		<webservice-description-name>UploadImage</webservice-description-name>
+		<port-component>
+			<port-component-name>UploadImage</port-component-name>
+			<wsdl-service xmlns:pfx="http://ws.filenet.sii.inbursa.com.mx/">
+			pfx:UploadImage</wsdl-service>
+			<wsdl-port xmlns:pfx="http://ws.filenet.sii.inbursa.com.mx/">
+			pfx:UpLoadImageImplPort</wsdl-port>
+			<enable-mtom>false</enable-mtom>
+			<service-endpoint-interface>mx.com.inbursa.sii.filenet.ws.UploadImage</service-endpoint-interface>
+			<service-impl-bean>
+				<servlet-link>
+				mx.com.inbursa.sii.filenet.ws.UploadImageSoapBindingImpl</servlet-link>
+			</service-impl-bean>
+		</port-component>
+	</webservice-description>
+</webservices>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UploadImageMTOM" targetNamespace="http://ws.filenet.sii.inbursa.com.mx/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.filenet.sii.inbursa.com.mx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.filenet.sii.inbursa.com.mx/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="uploadDocumentMTOM" type="tns:uploadDocumentMTOM"/>
+      <xs:element name="uploadDocumentMTOMResponse" type="tns:uploadDocumentMTOMResponse"/>
+      <xs:complexType name="uploadDocumentMTOM">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="documento" type="tns:documentoMTOMVO"/>
+          <xs:element minOccurs="0" name="negocio" type="xs:string"/>
+          <xs:element minOccurs="0" name="producto" type="xs:string"/>
+          <xs:element minOccurs="0" name="tramite" type="xs:string"/>
+          <xs:element minOccurs="0" name="datosOrigen" type="tns:datosOrigenVo"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="documentoMTOMVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dfile" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="extension" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="llavesDocumento" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="nombreDocumento" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDocumento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="datosOrigenVo">
+        <xs:sequence>
+          <xs:element name="sistemaOrigen" type="xs:int"/>
+          <xs:element minOccurs="0" name="usuario" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="uploadDocumentMTOMResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:responseDocumentVO"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="responseDocumentVO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+          <xs:element name="error" type="xs:int"/>
+          <xs:element minOccurs="0" name="nombreImagen" type="xs:string"/>
+          <xs:element minOccurs="0" name="tipoDocumento" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="uploadDocumentMTOM">
+    <wsdl:part element="tns:uploadDocumentMTOM" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="uploadDocumentMTOMResponse">
+    <wsdl:part element="tns:uploadDocumentMTOMResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="UploadImageMTOM">
+    <wsdl:operation name="uploadDocumentMTOM">
+      <wsdl:input message="tns:uploadDocumentMTOM" name="uploadDocumentMTOM"/>
+      <wsdl:output message="tns:uploadDocumentMTOMResponse" name="uploadDocumentMTOMResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UploadImageMTOMSoapBinding" type="tns:UploadImageMTOM">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="uploadDocumentMTOM">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="uploadDocumentMTOM">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="uploadDocumentMTOMResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UploadImageMTOM">
+    <wsdl:port binding="tns:UploadImageMTOMSoapBinding" name="UploadImageMTOMImplPort">
+      <soap:address location="http://146.219.216.177:7005/inbursa-sii/ws/uploadImgMTOM"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
